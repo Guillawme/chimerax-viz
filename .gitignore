@@ -1,0 +1,12 @@
+# Ignore downloaded files (although they should land outside of this repository)
+*.pdb
+*.cif
+*.mrc
+
+# Ignore generated movie files
+*.mp4
+*.avi
+
+# Ignore ChimeraX session files
+*.csx
+

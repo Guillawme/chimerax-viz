@@ -1,0 +1,159 @@
+# Load map and model
+open emdb:11220 6zhx
+
+# Define more convenient names for component chains
+name H3 /a/e
+name H4 /b/f
+name H2A /c/g
+name H2B /d/h
+name histones /a/e/b/f/c/g/d/h
+name DNA /i/j
+name ALC1 /k/l
+name mainALC1 /k
+name APM /g:61,64,90,92/h:102,106
+name interactions /k/g:61,64,90,92/h:102,106
+
+# Apply color code
+color H3 blue
+color H4 green
+color H2A yellow
+color H2B red
+color DNA grey
+color ALC1 hotpink
+
+hide atoms
+
+# Orient for starting frame
+turn x 50
+turn z -110
+turn x 10
+# These last rotations bring chain K to the front
+turn y 180
+turn x 5
+
+# Use nice display settings
+set bgColor white
+lighting soft
+graphics silhouettes false
+volume #1 level 0.0075
+
+# Movie 1: map overview
+
+movie record
+
+wait 120
+
+# Smooth transition from grey map to colored map
+crossfade 60
+
+color zone #1 near #2 distance 12
+
+wait 120
+
+turn y 0.5 720; wait
+
+movie stop
+
+movie encode framerate 60 output 6zhx-movie-01.mp4
+
+# Set up for movie 2
+hide #1
+show #2
+hide atoms
+hide cartoons
+hide surfaces
+show DNA cartoons
+show histones surfaces
+show ALC1 atoms
+hide H
+style ALC1 sphere
+size atomradius 1.3
+graphics silhouettes true
+
+# Re-apply color code (surfaces did not have it)
+color H3 blue
+color H4 green
+color H2A yellow
+color H2B red
+color DNA grey
+color ALC1 hotpink
+color ALC1 byhetero
+
+# Prepare zoom-in by saving current view and destination view
+view name overview
+view mainALC1
+view name mainALC1view
+view overview
+
+# Movie 2: model
+
+movie record
+
+wait 120
+
+view mainALC1view 300; wait
+
+wait 120
+
+# Smooth transition
+crossfade 60
+
+# Show peptide as sticks to see acidic patch cavity more easily
+style ALC1 stick
+size stickradius 0.3
+
+wait 120
+
+turn y 15 240 rock 120; wait
+turn x 30 240 rock 120; wait
+wait 120
+
+# Smooth transition
+crossfade 60
+
+# Show density around peptide
+graphics silhouettes false
+color #1 turquoise transparency 75
+surface zone #1 nearatoms mainALC1 distance 1.6
+show #1
+
+wait 120
+
+turn y 15 240 rock 120; wait
+turn x 30 240 rock 120; wait
+wait 120
+
+movie stop
+movie encode framerate 60 output 6zhx-movie-02.mp4
+
+# Set up for movie 3
+hide #1
+hide surface
+show histones cartoons
+graphics silhouettes true
+show interactions atoms
+style interactions stick
+size stickradius 0.3
+color interactions byhetero
+hide HC
+hbond mainALC1 reveal true
+clip far 2
+
+# Movie 3: interactions
+
+movie record
+
+wait 120
+
+turn y 15 240 rock 120; wait
+turn x 30 240 rock 120; wait
+wait 120
+
+movie stop
+movie encode framerate 60 output 6zhx-movie-03.mp4
+
+# Save session file
+save 6zhx.cxs
+
+# Exit ChimeraX
+quit

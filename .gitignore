@@ -8,5 +8,5 @@
 *.avi
 
 # Ignore ChimeraX session files
-*.csx
+*.cxs
 

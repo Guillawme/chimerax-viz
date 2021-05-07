@@ -1,0 +1,40 @@
+# Download PDB entry 1AOI
+open 1aoi
+
+# Set up display for overview
+hide atoms
+show cartoons
+color /a/e blue
+color /b/f green
+color /c/g yellow
+color /d/h red
+color /i/j grey
+set bgColor white
+lighting soft
+graphics silhouettes true
+name APM /c:61,64,90,92
+show APM atoms
+color APM byhetero
+
+# Save overview image
+save 1AOI-APM-cartoon-overview.png supersample 3 transparentbackground true
+
+# Set up display for close up view
+view APM
+style APM stick
+
+# Save close up image
+save 1AOI-APM-cartoon-inset.png supersample 3 transparentbackground true
+
+# Set up display for electrostatic surface view
+view #1
+coulombic protein range -5,5
+
+# Save electrostatic surface image
+save 1AOI-APM-surface_minus5-to-5kTe.png supersample 3 transparentbackground true
+
+# Also save session
+save 1AOI-acidic-patch.cxs
+
+# Exit ChimeraX
+quit

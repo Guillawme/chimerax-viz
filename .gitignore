@@ -7,6 +7,9 @@
 *.mp4
 *.avi
 
+# Ignore generated image files
+*.png
+
 # Ignore ChimeraX session files
 *.cxs
 

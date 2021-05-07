@@ -1,5 +1,7 @@
 # Nucleosome in complex with the regulatory linker segment of ALC1
 
+## Movie
+
 This visualization was made for the following article (but ended up not being
 attached to the final published version):
 
@@ -20,3 +22,10 @@ movies for the three parts of the whole animation, while `6zhx-full-movie.cxc`
 generates a single movie with fading transitions between the three parts.
 
 I posted the full movie [here](https://twitter.com/Guillawme/status/1379802108321538049).
+
+## Figure panels
+
+The script `6zhx_figure-2-EFG.cxc` generates panels E, F and G of figure 2 of
+the article (with slight differences because it uses the deposited model, while
+the article figure was prepared with a version of the model prior to deposition
+that was subsequently subjected to more refinement).

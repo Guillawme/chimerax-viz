@@ -28,4 +28,5 @@ I posted the full movie [here](https://twitter.com/Guillawme/status/137980210832
 The script `6zhx_figure-2-EFG.cxc` generates panels E, F and G of figure 2 of
 the article (with slight differences because it uses the deposited model, while
 the article figure was prepared with a version of the model prior to deposition
-that was subsequently subjected to more refinement).
+that was subsequently subjected to more refinement). This took about 40 seconds
+to run on the same laptop as described above, also not counting download time.

@@ -1,0 +1,207 @@
+# Load map and model
+open emdb:13065 7otq
+
+# Adjust map contour level and remove speckles
+# Contour level of 0.15 is a good compromise because it shows that we have secondary structure resolution and also shows connected density at the H4 tail
+volume #1 level 0.15
+surface dust #1 size 10
+
+# Name orientations to make it easier to come back to them
+
+## Orient in disc view and zoom in to fill camera view
+turn x -90
+turn z -5
+view #1
+view name disc
+
+## Orient in dyad view
+view disc
+turn x 90
+turn z -5
+turn x -5
+view name dyad
+
+## Orient in gyres view
+view dyad
+turn x 180
+turn z -5
+view name gyres
+
+## Orient to look at H4 tail
+view gyres
+turn y 95
+turn x 45
+turn y 30
+view name H4tailInteraction
+view H4tailInteraction
+turn y -50
+turn x -15
+turn y -5
+view name H4tailInteraction2
+
+# Name chains to make the rest easier to read
+name H3 /a/e
+name H4 /b/f
+name H2A /c/g
+name H2B /d/h
+name histones /a-h
+name DNA /i/j
+name ALC1 /k
+name NATPase /k:42-266
+name CATPase /k:267-500
+name H4tail /b:16-24
+name GreenbergResidues /k:377,381
+
+# Apply color code
+color H3 blue
+color H4 green
+color H2A yellow
+color H2B red
+color DNA silver
+color ALC1 deeppink
+color NATPase salmon
+
+# Find correct protein secondary structure assignments in atomic model
+dssp protein
+
+# Global display options
+set bgColor white
+lighting soft
+graphics silhouettes true
+
+# Color map
+color zone #1 near #2 distance 10
+
+# Adjust display of atomic model
+hide #2 atoms
+show #2 cartoons
+cartoon style protein modeHelix tube radius 2 sides 24
+
+# Map figures
+hide #2 models
+view disc
+save map_disc-view.png transparentbackground true supersample 3
+save map_for_EMDB_deposition.png width 500 height 500 transparentbackground false supersample 3
+view dyad
+save map_dyad-view.png transparentbackground true supersample 3
+view gyres
+save map_gyres-view.png transparentbackground true supersample 3
+view H4tailInteraction
+save map_H4tail-view_1.png transparentbackground true supersample 3
+# Same figure zoomed in closer to the interesting region
+view H4tail
+save map_H4tail-view_1_zoom.png transparentbackground true supersample 3
+view H4tailInteraction2
+save map_H4tail-view_2.png transparentbackground true supersample 3
+# Same figure zoomed in closer to the interesting region
+#view H4tail
+#save map_H4tail-view_2_zoom.png transparentbackground true supersample 3
+
+# Model figures
+hide #1 models
+show #2 models
+view disc
+save model_disc-view.png transparentbackground true supersample 3
+view dyad
+save model_dyad-view.png transparentbackground true supersample 3
+view gyres
+save model_gyres-view.png transparentbackground true supersample 3
+view H4tailInteraction
+save model_H4tail-view_1.png transparentbackground true supersample 3
+# Same figure zoomed in closer to the interesting region
+view H4tail
+save model_H4tail-view_1_zoom.png transparentbackground true supersample 3
+# Same again, with residues from Greenberg paper in sticks
+show GreenbergResidues atoms
+style GreenbergResidues stick
+size stickradius 0.4
+color GreenbergResidues grey
+color GreenbergResidues byhetero
+hide H
+save model_H4tail-view_1_zoom_residues.png transparentbackground true supersample 3
+hide GreenbergResidues atoms
+color ALC1 deeppink
+color NATPase salmon
+view H4tailInteraction2
+save model_H4tail-view_2.png transparentbackground true supersample 3
+# Same figure zoomed in closer to the interesting region
+view H4tail
+save model_H4tail-view_2_zoom.png transparentbackground true supersample 3
+# Same again, with residues from Greenberg paper in sticks
+show GreenbergResidues atoms
+style GreenbergResidues stick
+size stickradius 0.4
+color GreenbergResidues grey
+color GreenbergResidues byhetero
+hide H
+save model_H4tail-view_2_zoom_residues.png transparentbackground true supersample 3
+hide GreenbergResidues atoms
+color ALC1 deeppink
+color NATPase salmon
+
+# Model with H4 tail density figures
+surface zone #1 nearatoms H4tail distance 3
+color #1 turquoise transparency 75
+show #1
+view disc
+save model-map_disc-view.png transparentbackground true supersample 3
+view dyad
+save model-map_dyad-view.png transparentbackground true supersample 3
+view gyres
+save model-map_gyres-view.png transparentbackground true supersample 3
+view H4tailInteraction
+save model-map_H4tail-view_1.png transparentbackground true supersample 3
+# Same figure zoomed in closer to the interesting region
+view H4tail
+save model-map_H4tail-view_1_zoom.png transparentbackground true supersample 3
+# Same again, with residues from Greenberg paper in sticks
+show GreenbergResidues atoms
+style GreenbergResidues stick
+size stickradius 0.4
+color GreenbergResidues grey
+color GreenbergResidues byhetero
+hide H
+save model-map_H4tail-view_1_zoom_residues.png transparentbackground true supersample 3
+hide GreenbergResidues atoms
+color ALC1 deeppink
+color NATPase salmon
+view H4tailInteraction2
+save model-map_H4tail-view_2.png transparentbackground true supersample 3
+# Same figure zoomed in closer to the interesting region
+view H4tail
+save model-map_H4tail-view_2_zoom.png transparentbackground true supersample 3
+# Same again, with residues from Greenberg paper in sticks
+show GreenbergResidues atoms
+style GreenbergResidues stick
+size stickradius 0.4
+color GreenbergResidues grey
+color GreenbergResidues byhetero
+hide H
+save model-map_H4tail-view_2_zoom_residues.png transparentbackground true supersample 3
+hide GreenbergResidues atoms
+color ALC1 deeppink
+color NATPase salmon
+
+# Make flat figures for cartoon
+hide #!1 models
+lighting flat
+show surfaces
+hide atoms
+hide cartoons
+# Color N- and C-ATPase as in 2017 paper, histones all the same
+color histones chocolate
+color DNA silver
+color NATPase yellow
+color CATPase red
+view disc
+save flat-surface_disc-view.png transparentbackground true supersample 3
+view dyad
+save flat-surface_dyad-view.png transparentbackground true supersample 3
+view gyres
+save flat-surface_gyres-view.png transparentbackground true supersample 3
+
+# Also save session
+save 7otq_figure-2.cxs
+
+# Exit ChimeraX
+quit

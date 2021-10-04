@@ -38,5 +38,5 @@ your shell prompt back.
 
 [pdbe]: https://www.ebi.ac.uk/pdbe
 
-[emdb]: https://www.ebi.ac.uk/pdbe/emdb
+[emdb]: https://www.ebi.ac.uk/emdb
 

@@ -1,0 +1,107 @@
+# Load maps as a volume series
+open EMD-13070/other/emd_13070_additional_*.map vseries true
+
+# Global display options
+set bgColor white
+lighting soft
+graphics silhouettes true
+# Use same color as in the cryoDRGN paper
+volume #1 color cornflowerblue
+
+# Adjust map contour level and remove speckles
+# Contour level of 0.01 is good for weak features like the macro domain
+# Contour level of 0.025 is good for strong features like the ATPase domain
+volume #1 level 0.01
+surface dust #1 size 50
+
+view #1
+
+# Name orientations to make it easier to come back to them
+
+## Orient in disc view and zoom in to fill camera view
+turn x -90
+turn z -5
+view #1
+view name disc
+
+## Orient in dyad view
+view disc
+turn x 90
+turn z -5
+turn x -5
+view name dyad
+
+## Orient in gyres view
+view dyad
+turn x 180
+turn z -5
+view name gyres
+
+## Orient to look at H4 tail
+view gyres
+turn y 95
+turn x 45
+turn y 30
+view name H4tailInteraction
+view H4tailInteraction
+turn y -50
+turn x -15
+turn y -5
+view name H4tailInteraction2
+
+# Generate snapshots of gyres view at high contour level
+# to show ATPase lobes dynamics along the trajectory
+view gyres
+volume #1 level 0.025
+vseries play #1 jumpto 3
+save ATPase-dynamics_trajectory-frame-03.png transparentbackground true supersample 3
+vseries play #1 jumpto 10
+save ATPase-dynamics_trajectory-frame-10.png transparentbackground true supersample 3
+vseries play #1 jumpto 16
+save ATPase-dynamics_trajectory-frame-16.png transparentbackground true supersample 3
+vseries play #1 jumpto 24
+save ATPase-dynamics_trajectory-frame-24.png transparentbackground true supersample 3
+vseries play #1 jumpto 31
+save ATPase-dynamics_trajectory-frame-31.png transparentbackground true supersample 3
+vseries play #1 jumpto 38
+save ATPase-dynamics_trajectory-frame-38.png transparentbackground true supersample 3
+vseries play #1 jumpto 45
+save ATPase-dynamics_trajectory-frame-45.png transparentbackground true supersample 3
+vseries play #1 jumpto 52
+save ATPase-dynamics_trajectory-frame-52.png transparentbackground true supersample 3
+vseries play #1 jumpto 58
+save ATPase-dynamics_trajectory-frame-58.png transparentbackground true supersample 3
+
+# Generate snapshots of disc view at low contour level
+# to show AP interaction and macro dynamics along the trajectory
+vseries play #1 jumpto 0
+volume #1 level 0.013
+surface dust #1 size 100
+view disc
+view #1
+vseries play #1 jumpto 0
+save AP-and-macro_trajectory-frame-00.png transparentbackground true supersample 3
+vseries play #1 jumpto 1
+save AP-and-macro_trajectory-frame-01.png transparentbackground true supersample 3
+vseries play #1 jumpto 2
+save AP-and-macro_trajectory-frame-02.png transparentbackground true supersample 3
+vseries play #1 jumpto 3
+save AP-and-macro_trajectory-frame-03.png transparentbackground true supersample 3
+vseries play #1 jumpto 5
+save AP-and-macro_trajectory-frame-05.png transparentbackground true supersample 3
+vseries play #1 jumpto 7
+save AP-and-macro_trajectory-frame-07.png transparentbackground true supersample 3
+vseries play #1 jumpto 9
+save AP-and-macro_trajectory-frame-09.png transparentbackground true supersample 3
+vseries play #1 jumpto 13
+save AP-and-macro_trajectory-frame-13.png transparentbackground true supersample 3
+vseries play #1 jumpto 15
+save AP-and-macro_trajectory-frame-15.png transparentbackground true supersample 3
+vseries play #1 jumpto 17
+save AP-and-macro_trajectory-frame-17.png transparentbackground true supersample 3
+vseries play #1 jumpto 21
+save AP-and-macro_trajectory-frame-21.png transparentbackground true supersample 3
+vseries play #1 jumpto 37
+save AP-and-macro_trajectory-frame-37.png transparentbackground true supersample 3
+vseries play #1 jumpto 58
+save AP-and-macro_trajectory-frame-58.png transparentbackground true supersample 3

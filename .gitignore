@@ -1,7 +1,10 @@
-# Ignore downloaded files (although they should land outside of this repository)
+# Ignore downloaded files (although most of them should land outside of this repository)
 *.pdb
 *.cif
 *.mrc
+*.map.gz
+*.map
+*.xml
 
 # Ignore generated movie files
 *.mp4

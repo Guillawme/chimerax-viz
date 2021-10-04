@@ -17,8 +17,8 @@ Intel Iris Graphics 6100 integrated graphics card) and about 10 minutes on a
 workstation (Intel Core at i7-6900K 3.2 GHz, 128 GB of RAM, nVidia GeForce GTX
 1070 Ti graphics card).
 
-The two scripts are almost identical: `6zhx-three-parts.cxc` generates separate
-movies for the three parts of the whole animation, while `6zhx-full-movie.cxc`
+The two scripts are almost identical: `6zhx_three-parts.cxc` generates separate
+movies for the three parts of the whole animation, while `6zhx_full-movie.cxc`
 generates a single movie with fading transitions between the three parts.
 
 I posted the full movie [here](https://twitter.com/Guillawme/status/1379802108321538049).

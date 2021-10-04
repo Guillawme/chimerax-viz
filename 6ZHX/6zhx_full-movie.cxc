@@ -160,6 +160,3 @@ movie encode framerate 60 output 6zhx-full-movie.mp4
 
 # Save session file
 save 6zhx.cxs
-
-# Exit ChimeraX
-quit

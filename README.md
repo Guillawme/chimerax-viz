@@ -19,14 +19,19 @@ directory contains a README file explaining how much time the corresponding
 script took to complete on the computer I ran it on.
 
 All ChimeraX command files in this repository are meant to be run in an empty
-session and end with a `quit` command, so the recommended way to run them is as
-follows (in which `<VIZ>` is the directory of the visualization you want to
-generate and `<script.cxc>` is the command file):
+session, so the recommended way to run them is as follows (in which `<VIZ>` is
+the directory of the visualization you want to generate and `<script.cxc>` is
+the command file):
 
 ```
 cd /path/to/this/repo/<VIZ>
-chimerax <script.cxc>
+chimerax --exit <script.cxc>
 ```
+
+The `--exit` option offers a slightly faster startup by preventing ChimeraX from
+checking for updates and doing other things only necessary for an interactive
+session, and makes ChimeraX quit upon completion of the command file, so you get
+your shell prompt back.
 
 
 [chimerax]: https://www.cgl.ucsf.edu/chimerax

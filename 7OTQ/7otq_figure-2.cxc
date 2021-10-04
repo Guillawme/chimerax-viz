@@ -202,6 +202,3 @@ save flat-surface_gyres-view.png transparentbackground true supersample 3
 
 # Also save session
 save 7otq_figure-2.cxs
-
-# Exit ChimeraX
-quit

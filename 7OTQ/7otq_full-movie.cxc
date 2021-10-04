@@ -1,0 +1,106 @@
+# Load map and model
+open emdb:13065 7otq
+
+# Adjust map contour level and remove speckles
+# Contour level of 0.15 is a good compromise because it shows that we have secondary structure resolution and also shows connected density at the H4 tail
+volume #1 level 0.15
+surface dust #1 size 10
+
+# Name orientations to make it easier to come back to them
+
+## Orient in disc view and zoom in to fill camera view
+turn x -90
+turn z -5
+view #1
+view name disc
+
+## Orient in dyad view
+view disc
+turn x 90
+turn z -5
+turn x -5
+view name dyad
+
+## Orient in gyres view
+view dyad
+turn x 180
+turn z -5
+view name gyres
+
+## Orient to look at H4 tail
+view gyres
+turn y 95
+turn x 45
+turn y 30
+view name H4tailInteraction
+view H4tailInteraction
+turn y -50
+turn x -15
+turn y -5
+view name H4tailInteraction2
+
+# Name chains to make the rest easier to read
+name H3 /a/e
+name H4 /b/f
+name H2A /c/g
+name H2B /d/h
+name histones /a-h
+name DNA /i/j
+name ALC1 /k
+name NATPase /k:42-266
+name CATPase /k:267-500
+name H4tail /b:16-24
+name GreenbergResidues /k:377,381
+
+# Apply color code
+color H3 blue
+color H4 green
+color H2A yellow
+color H2B red
+color DNA silver
+color ALC1 deeppink
+color NATPase salmon
+
+# Find correct protein secondary structure assignments in atomic model
+dssp protein
+
+# Adjust display of atomic model
+hide atoms
+hide cartoons
+cartoon style protein modeHelix tube radius 2 sides 24
+
+# Global display options
+set bgColor white
+lighting soft
+graphics silhouettes true
+
+# Movie 1: grey map, fade to map colored by chain assignment, fade to atomic model
+
+view disc
+view #1
+movie record
+wait 240
+# Smooth transition from grey map to colored map
+crossfade 120
+color zone #1 near #2 distance 10
+wait 240
+# Smooth transition from map to atomic model
+crossfade 120
+hide #1
+show cartoons
+wait 240
+turn y 0.25 1440; wait
+movie stop
+surface zone #1 nearatoms H4tail distance 3
+color #1 green transparency 85
+movie record
+wait 240
+view H4tailInteraction 720; wait
+crossfade 120
+show #1
+wait 240
+movie stop
+movie encode framerate 60 output 7otq_movie.mp4
+
+# Also save session
+save 7otq_full-movie.cxs

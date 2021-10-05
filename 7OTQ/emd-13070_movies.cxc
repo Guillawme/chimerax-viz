@@ -1,0 +1,122 @@
+# Load maps as a volume series
+open EMD-13070/other/emd_13070_additional_*.map vseries true
+
+# Global display options
+set bgColor white
+lighting soft
+graphics silhouettes true
+# Use same color as in the cryoDRGN paper
+volume #1 color cornflowerblue
+
+# Adjust map contour level and remove speckles
+# Contour level of 0.01 is good for weak features like the macro domain
+# Contour level of 0.025 is good for strong features like the ATPase domain
+volume #1 level 0.01
+surface dust #1 size 50
+
+view #1
+
+# Name orientations to make it easier to come back to them
+
+## Orient in disc view and zoom in to fill camera view
+turn x -90
+turn z -5
+view #1
+view name disc
+
+## Orient in dyad view
+view disc
+turn x 90
+turn z -5
+turn x -5
+view name dyad
+
+## Orient in gyres view
+view dyad
+turn x 180
+turn z -5
+view name gyres
+
+## Orient to look at H4 tail
+view gyres
+turn y 95
+turn x 45
+turn y 30
+view name H4tailInteraction
+view H4tailInteraction
+turn y -50
+turn x -15
+turn y -5
+view name H4tailInteraction2
+
+# The 'graphics rate maxframerate 30' command causes the resulting movie to be at 30 frames per second
+# instead of whatever the default is in ChimeraX (I think it's 60); I chose 30 fps
+# because it is the default export frame rate in Openshot, the movie editing software I subsequently 
+# used to assemble several movie files into a single movie
+
+# To adjust the number of steps through the volume series per second, you need to
+# play with the 'pauseframes 15' and 'wait 900' numbers:
+# I had 59 volumes and wanted to go through them at 2 volumes per second
+# so 'pauseframes 15' keeps each step in the volume series displayed for 15 movie frames (so 0.5 s at 30 fps)
+# before changing to the next volume
+# and 'wait 900' makes the entire movie 900 frames (so 30 s at 30 fps)
+
+# Generate movie of gyres view at high contour level
+# to show ATPase lobes dynamics along the trajectory
+view gyres
+volume #1 level 0.02
+view #1
+graphics rate maxframerate 30
+#Forward direction movie
+vseries play #1 jumpto 0
+movie record
+vseries play #1 normalize true pauseframes 15; wait 900
+movie stop
+movie encode ATPase-dynamics_contour-0.02_forward.mp4 framerate 30
+# Reverse direction movie
+vseries play #1 jumpto 58
+movie record
+vseries play #1 normalize true direction backward pauseframes 15; wait 900
+movie stop
+movie encode ATPase-dynamics_contour-0.02_backward.mp4 framerate 30
+
+# Generate movie of disc view at low contour level
+# to show AP interaction and macro dynamics along the trajectory
+view disc
+vseries play #1 jumpto 0
+volume #1 level 0.013
+surface dust #1 size 100
+view #1
+graphics rate maxframerate 30
+#Forward direction movie
+vseries play #1 jumpto 0
+movie record
+vseries play #1 normalize true pauseframes 15; wait 900
+movie stop
+movie encode AP-macro-dynamics_contour-0.013_forward.mp4 framerate 30
+# Reverse direction movie
+vseries play #1 jumpto 58
+movie record
+vseries play #1 normalize true direction backward pauseframes 15; wait 900
+movie stop
+movie encode AP-macro-dynamics_contour-0.013_backward.mp4 framerate 30
+
+# Generate movie of H4tail view at intermediate contour level
+# to show AP and H4 tail interactions along the trajectory
+view H4tailInteraction
+vseries play #1 jumpto 58
+volume #1 level 0.018
+view #1
+graphics rate maxframerate 30
+#Forward direction movie
+vseries play #1 jumpto 0
+movie record
+vseries play #1 normalize true pauseframes 15; wait 900
+movie stop
+movie encode H4tail-dynamics_contour-0.018_forward.mp4 framerate 30
+# Reverse direction movie
+vseries play #1 jumpto 58
+movie record
+vseries play #1 normalize true direction backward pauseframes 15; wait 900
+movie stop
+movie encode H4tail-dynamics_contour-0.018_backward.mp4 framerate 30

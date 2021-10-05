@@ -39,7 +39,13 @@ files from the EMDB and uncompress them. **This will download about 460 MB, and
 decompression will write out another ~500 MB.** I posted these movies
 [here](https://twitter.com/Guillawme/status/1443148476058116097),
 [here](https://twitter.com/Guillawme/status/1443148514394087427) and
-[here](https://twitter.com/Guillawme/status/1443148550028894216).
+[here](https://twitter.com/Guillawme/status/1443148550028894216). The animated
+UMAP plot in these movies was generated using
+`plot-graph-traversal-trajectory-on-umap.ipynb` to prepare single frames, each
+with a new red dot added, and then using `make-umap-movie.sh` to assemble all
+these frames in a movie at the same frame rate as the volume series movies from
+ChimeraX. These scripts are provided as an example, but they will not run since
+the result files from cryoDRGN are not in this repository.
 
 ## Timings
 

@@ -1,0 +1,135 @@
+# Load model
+open 7otq
+
+# Name orientations to make it easier to come back to them
+
+## Orient in disc view and zoom in to fill camera view
+turn x -90
+turn z -5
+view #1
+view name disc
+
+## Orient in dyad view
+view disc
+turn x 90
+turn z -5
+turn x -5
+view name dyad
+
+## Orient in gyres view
+view dyad
+turn x 180
+turn z -5
+view name gyres
+
+## Orient to look at H4 tail
+view gyres
+turn y 95
+turn x 45
+turn y 30
+view name H4tailInteraction
+view H4tailInteraction
+turn y -50
+turn x -15
+turn y -5
+view name H4tailInteraction2
+
+# Find correct protein secondary structure assignments in atomic model
+dssp protein
+
+# Load other PDB entries to compare to
+## Yeast Snf2 in apo, ADP-BeFx and ADP bound states
+open 5z3l
+open 5z3u
+open 5z3o
+## Yeast Isw1 in ADP-BeFx and ADP bound states
+open 6jyl
+open 6iro
+## Human CHD4 in ADP-BeFx bound state
+open 6ryr
+
+# Align them all to our model, based on H3 chains
+mmaker #2-7/a,e to #1/a,e
+
+# Name chains to make the rest easier to read
+name H3 /a/e
+name H4 /b/f
+name H2A /c/g
+name H2B /d/h
+name histones /a-h
+name DNA /i/j
+name mainNuc #1/a-j
+name otherNucs #2-7/a-j
+name ALC1 #1/k
+name NATPase #1/k:42-266
+name CATPase #1/k:267-500
+name H4tail #1/b:16-24
+name Snf2Apo #2/o
+name Snf2ADPBeF #3/o
+name Snf2ADP #4/o
+name Snf2 #2-4/o
+name Snf2NATPase #2-4/o:670-1000
+name Isw1ADPBeF #5/k
+name Isw1ADP #6/l
+name Isw1 #5/k#6/l
+name Isw1NATPase #5/k:101-417#6/l:101-417
+name CHD4 #7/w:727-1212
+name CHD4NATPase #7/w:446-960
+name bindingFactors #1/k#2-4/o #5/k#6/l #7/w:727-1212
+
+# Apply color code
+color H3 blue
+color H4 green
+color H2A yellow
+color H2B red
+color DNA silver
+color ALC1 deeppink
+color NATPase salmon
+color Snf2 teal
+color Snf2NATPase turquoise
+color Isw1 dodgerblue
+color Isw1NATPase skyblue
+color CHD4 limegreen
+color CHD4NATPase greenyellow
+
+# Global display options
+set bgColor white
+lighting soft
+graphics silhouettes true
+
+# Adjust display of atomic models
+hide atoms
+hide cartoons
+show mainNuc cartoons
+show bindingFactors cartoons
+hide #!2-7 models
+transparency mainNuc 75 target c
+cartoon style protein modeHelix tube radius 2 sides 24
+
+view gyres
+
+# Make figures
+## Superimposition of Snf2Apo
+show #!2 models
+save ALC1-Snf2Apo_superimposition_gyres-view.png transparentbackground true supersample 3
+hide #!2 models
+## Superimposition of Snf2ADPBeF
+show #!3 models
+save ALC1-Snf2ADPBeF_superimposition_gyres-view.png transparentbackground true supersample 3
+hide #!3 models
+## Superimposition of Snf2ADP
+show #!4 models
+save ALC1-Snf2ADP_superimposition_gyres-view.png transparentbackground true supersample 3
+hide #!4 models
+## Superimposition of IswADPBeF
+show #!5 models
+save ALC1-Isw1ADPBeF_superimposition_gyres-view.png transparentbackground true supersample 3
+hide #!5 models
+## Superimposition of IswADP
+show #!6 models
+save ALC1-Isw1ADP_superimposition_gyres-view.png transparentbackground true supersample 3
+hide #!6 models
+## Superimposition of CHD4ADPBeF
+show #!7 models
+save ALC1-CHD4ADPBeF_superimposition_gyres-view.png transparentbackground true supersample 3
+#hide #!7 models

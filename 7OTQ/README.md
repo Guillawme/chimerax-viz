@@ -10,8 +10,9 @@ Hewitt G, Boulton SJ & Deindl S (2021) Structure and dynamics of the chromatin
 remodeler ALC1 bound to a PARylated nucleosome. *eLife* **10**: e71420
 <https://doi.org/10.7554/eLife.71420>
 
-The script `7otq_figure-2.cxc` generates panels used in Figure 2, and can be run
-as it is.
+The scripts `7otq_figure-2.cxc` and `7otq_figure-2-supplement-2.cxc` generate
+panels used in Figure 2 and Figure 2 - Supplement 2, respectively. They can be
+run as is.
 
 The script `emd-13070_snapshots.cxc` generates panels used in Figures 3 and 4.
 This script cannot be run right away, as it needs all maps from
@@ -51,4 +52,5 @@ GB of RAM, Intel Iris Graphics 6100 integrated graphics card):
 - `7otq_full-movie.cxc`: approximately 10 minutes
 - `emd-13070_snapshots.cxc`: approximately 1 min 20 s
 - `emd-13070_movies.cxc`: approximately 12 minutes
+- `7otq_figure-2-supplement-2.cxc`: approximately 30 s
 

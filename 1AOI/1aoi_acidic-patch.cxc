@@ -32,6 +32,3 @@ coulombic protein range -5,5
 
 # Save electrostatic surface image
 save 1AOI-APM-surface_minus5-to-5kTe.png supersample 3 transparentbackground true
-
-# Also save session
-save 1AOI-acidic-patch.cxs

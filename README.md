@@ -9,14 +9,13 @@ I will update this repository whenever I produce a visualization worth sharing
 (and from publicly available data).
 
 All of these scripts download files from the [PDB][pdbe] and [EMDB][emdb] into
-`~/Downloads/ChimeraX`. They also save one or more movie files and a ChimeraX
-session file (`.cxs`, containing the last state after making movies) in the
+`~/Downloads/ChimeraX`. They also save one or more image or movie files in the
 directory from where ChimeraX was started before running the script (if you
 started ChimeraX from a desktop icon, application launcher or menu item, these
 files will probably be written in `~/Desktop`). They can take a long time to
-run, and often mobilize a fair amount of resources. Each visualization's
-directory contains a README file explaining how much time the corresponding
-script took to complete on the computer I ran it on.
+run, and often mobilize a fair amount of resources. Each visualization directory
+contains a README file explaining how much time the corresponding script took to
+complete on the computer I ran it on.
 
 All ChimeraX command files in this repository are meant to be run in an empty
 session, so the recommended way to run them is as follows (in which `<VIZ>` is

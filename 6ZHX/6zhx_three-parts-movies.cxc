@@ -151,6 +151,3 @@ wait 120
 
 movie stop
 movie encode framerate 60 output 6zhx-movie-03.mp4
-
-# Save session file
-save 6zhx.cxs

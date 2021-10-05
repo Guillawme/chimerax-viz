@@ -101,6 +101,3 @@ show #1
 wait 240
 movie stop
 movie encode framerate 60 output 7otq_movie.mp4
-
-# Also save session
-save 7otq_full-movie.cxs

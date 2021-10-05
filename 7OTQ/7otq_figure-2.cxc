@@ -199,6 +199,3 @@ view dyad
 save flat-surface_dyad-view.png transparentbackground true supersample 3
 view gyres
 save flat-surface_gyres-view.png transparentbackground true supersample 3
-
-# Also save session
-save 7otq_figure-2.cxs

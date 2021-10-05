@@ -147,6 +147,3 @@ color LANA byhetero
 hide H
 
 save 6zhx_figure-2G.png supersample 3 transparentbackground true
-
-# Also save session
-save 6zhx_figure-2-EFG.cxs

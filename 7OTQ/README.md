@@ -47,10 +47,10 @@ Not counting the time it took to download the maps and model files, running
 these scripts took the following times on a laptop (Intel Core i7 at 3.1 GHz, 16
 GB of RAM, Intel Iris Graphics 6100 integrated graphics card):
 
-- `7otq_figure-2.cxc`: approximately 2 minutes
-- `7otq_three-parts-movie.cxc`: approximately 12 minutes
-- `7otq_full-movie.cxc`: approximately 10 minutes
+- `7otq_figure-2.cxc`: approximately 2 min
+- `7otq_three-parts-movie.cxc`: approximately 12 min
+- `7otq_full-movie.cxc`: approximately 10 min
 - `emd-13070_snapshots.cxc`: approximately 1 min 20 s
-- `emd-13070_movies.cxc`: approximately 12 minutes
+- `emd-13070_movies.cxc`: approximately 12 min
 - `7otq_figure-2-supplement-2.cxc`: approximately 30 s
 

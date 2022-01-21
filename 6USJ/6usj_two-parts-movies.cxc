@@ -1,0 +1,73 @@
+# Load map and model
+open emdb:20864 6usj
+
+# Define more convenient names for component chains
+name H3 /a/e/k/o
+name H4 /b/f/l/p
+name H2A /c/g/m/q
+name H2B /d/h/n/r
+name histones /a/e/b/f/c/g/d/h/k/o/l/p/m/q/n/r
+name DNA /i/j/s/t
+name PARP2 /u/v
+
+# Apply color code
+color H3 blue
+color H4 green
+color H2A yellow
+color H2B red
+color DNA darkgrey
+color PARP2 magenta
+
+hide atoms
+
+# Orient for starting frame
+turn z 210
+turn y -10
+view name start
+
+# Use nice display settings
+set bgColor white
+lighting soft
+graphics silhouettes true
+volume #1 level 0.006
+surface dust #1 size 10
+view #1
+
+# Movie 1: map overview
+movie record
+wait 120
+# Smooth transition from grey map to colored map
+crossfade 60
+color zone #1 near #2 distance 10
+wait 120
+turn y 0.5 720; wait
+wait 120
+movie stop
+movie encode framerate 60 output 6usj_movie_part-1.mp4
+
+# Set up for movie 2
+hide #!1 models
+show #!2 models
+hide atoms
+hide cartoons
+show DNA cartoons
+show DNA atoms
+nucleotides stubs
+show protein cartoons
+# Adjust display of alpha helices
+cartoon style protein modeHelix tube radius 2 sides 24
+hide #!2 models
+show #!1 models
+
+# Movie 2: model overview
+movie record
+wait 120
+# Smooth transition from map to atomic model
+crossfade 60
+hide #!1 models
+show #!2 models
+wait 120
+turn y 0.5 720; wait
+wait 120
+movie stop
+movie encode framerate 60 output 6usj_movie_part-2.mp4

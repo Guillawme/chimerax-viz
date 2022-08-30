@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A ChimeraX interactive document">
+    <meta name="author" content="Guillaume Gaullier">
+
+    <style type="text/css">
+      body {
+		  margin:1em auto;
+		  max-width:40em;
+          padding:0 0.62em;
+		  font:1.2em/1.62 serif;
+          line-height:1.6;
+	  }
+      footer {
+          color:grey;
+          font-style: italic;
+      }
+	  h1,h2,h3 {
+		  line-height:1.2;
+	  }
+      a.cxcmd {
+          color:orange;
+          font:bold 0.9em/1.62 sans-serif;
+      }
+      @media (prefers-color-scheme: dark) {
+		  body {
+              color:white;
+              background:black;
+          }
+          a:link {
+              color:#9cf;
+          }
+	      a:hover, a:visited:hover {
+              color:#cef;
+          }
+	      a:visited {
+              color:#c9f;
+          }
+      }
+	  @media print {
+		  body {
+			  max-width:none;
+		  }
+	  }
+    </style>
+
+    <title>
+      Interaction between the linker of ALC1 and the nucleosome acidic patch
+    </title>
+
+  </head>
+
+  <body>
+
+    <header>
+      <h1>How to read this?</h1>
+      <aside>
+        <p>
+          This page is an interactive document meant to be read from the help
+          browser of <a href="https://www.rbvi.ucsf.edu/chimerax/">UCSF
+          ChimeraX</a>. Links displayed <a href="">in this style</a> are regular
+          links that your regular web browser can follow, while links
+          displayed <a class="cxcmd" href="cxcmd:help">like this</a> are
+          special: your normal web browser will not do anything with them, but
+          clicking them while you are reading the page from the help browser in
+          ChimeraX will run commands to control the ChimeraX session.
+        </p>
+        <p>
+          To read this page in ChimeraX, open it and run the following command
+          at the prompt (replace <code>https://url/to/this/file.html</code> by
+          the address you are seeing in your regular web browser while reading
+          this):
+        </p>
+        <code>open https://url/to/this/file.html</code>
+      </aside>
+    </header>
+
+    <main>
+      <h1>
+        Interaction between the linker of ALC1 and the nucleosome acidic patch
+      </h1>
+      <p>
+        This interactive document will guide you through the structure reported
+        in the following publication:
+
+        <blockquote cite="https://doi.org/10.1016/j.celrep.2020.108529">
+          Lehmann LC, Bacic L, Hewitt G, Brackmann K, Sabantsev A, Gaullier G,
+          Pytharopoulou S, Degliesposti G, Okkenhaug H, Tan S, Costa A, Skehel
+          JM, Boulton SJ & Deindl S (2020) Mechanistic Insights into Regulation
+          of the ALC1 Remodeler by the Nucleosome Acidic Patch. <em>Cell
+          Reports</em> <strong>33</strong> <a href="https://doi.org/10.1016/j.celrep.2020.108529">doi:10.1016/j.celrep.2020.108529</a>
+        </blockquote>
+      </p>
+
+      <h2>Preparing the session</h2>
+      <p>
+        We will download PDB
+        entry <a href="https://www.ebi.ac.uk/pdbe/entry/pdb/6ZHX">6ZHX</a> and
+        EMDB entry
+        <a href="https://www.ebi.ac.uk/emdb/entry/11220">EMD-11220</a>, which
+        combined weigh a total of about 110 MB, so this will take a few seconds
+        to complete, depending on your internet connection speed (next time you
+        run this document it will be almost instant, because ChimeraX keeps a
+        local copy of downloaded files). In addition, we will apply the same
+        representations and color code as in the article figure. When you are
+        ready,
+        <a class="cxcmd"
+           href='cxcmd:
+                 open emdb:11220 6zhx;
+                 name H3 /a/e;
+                 name H4 /b/f;
+                 name H2A /c/g;
+                 name H2B /d/h;
+                 name histones /a/e/b/f/c/g/d/h;
+                 name DNA /i/j;
+                 name ALC1 #2/k,l;
+                 name mainALC1 #2/k;
+                 name otherALC1 #2/l;
+                 name APM #2/g:61,64,90,92#2/h:102,106;
+                 name interactions #2/k#2/g:61,64,90,92#2/h:102,106;
+                 color H3 blue;
+                 color H4 green;
+                 color H2A yellow;
+                 color H2B red;
+                 color DNA grey;
+                 color mainALC1 hotpink;
+                 color otherALC1 cyan;
+                 show #2 surfaces;
+                 color H3 blue;
+                 color H4 green;
+                 color H2A yellow;
+                 color H2B red;
+                 color DNA grey;
+                 color mainALC1 hotpink;
+                 color otherALC1 cyan;
+                 hide #!2 models;
+                 turn x 50;
+                 turn z -110;
+                 turn x 10;
+                 turn y 180;
+                 turn x 5;
+                 view #1;
+                 view name overview;
+                 turn y 180;
+                 turn x 5;
+                 view name otherSide;
+                 set bgColor white;
+                 lighting soft;
+                 graphics silhouettes false;
+                 volume #1 level 0.0075;
+                 view mainALC1;
+                 view otherALC1;
+                 view name otherALC1view;
+                 view overview;
+                 ui tool hide "Model Panel"'>
+          prepare the session</a>.
+      </p>
+      <p>
+        At this stage, you should see the cryo-EM map at an appropriate contour
+        level. Feel free to explore the map interactively before we continue. If
+        you get lost, you can:
+        <ul>
+          <li><a class="cxcmd" href="cxcmd:view overview">reset the orientation</a>,</li>
+          <li><a class="cxcmd" href="cxcmd:volume #1 level 0.0075">reset the contour level</a>,</li>
+          <li>or <a class="cxcmd" href="cxcmd:view overview; volume #1 level 0.0075">reset both</a>.</li>
+        </ul>
+      </p>
+
+      <h2>Looking at the cryo-EM map</h2>
+      <p>
+        If you are not familiar with the nucleosome, some color code will help:
+        <a class="cxcmd" href="cxcmd:crossfade 30; color zone #1 near #2
+        distance 12">apply color code</a>. At this stage, and assuming your went
+        back to the initial orientation (or never moved away from it), you
+        should see the cryo-EM map colored by chain assignment just like in
+        Figure 2E of the article. The feature of this map discussed in the
+        article is the presence of a peptide from
+        <a href="https://en.wikipedia.org/wiki/CHD1L">ALC1</a> (pink) bound to
+        the acidic patch formed by histones H2A (yellow) and H2B (red). H3 is
+        shown in blue, H4 in green and the DNA in grey.
+      </p>
+      <p>
+        In the article, we only showed one side of the nucleosome because of
+        space limitations. But the nucleosome is mostly symmetric, and therefore
+        has a second H2A-H2B dimer and its acidic patch on the other side. If
+        you <a class="cxcmd" href="cxcmd:turn y 2 90">look at the other
+        side</a>, you will see that there is an ALC1 peptide bound there as well
+        (cyan). You can click on this last link as many times as you want, to
+        rotate the nucleosome 180 degrees around the vertical axis.
+      </p>
+
+      <h2>Intepreting the map with an atomic model</h2>
+      <p>
+        Looking at the map is good, but will only take us so far. We need to
+        interpret it in terms of atoms. The map looks very strong for the
+        nucleosome (side chain density is clearly visible), slightly less so for
+        the bound ALC1 peptide. We can first look at an atomic model with the
+        histones represented as their molecular surface and the ALC1 peptide as
+        spheres. <a class="cxcmd"
+                    href="cxcmd:
+                          crossfade 30;
+                          hide #!1 models;
+                          show #!2 models;
+                          hide atoms;
+                          hide cartoons;
+                          hide surfaces;
+                          show DNA cartoons;
+                          show histones surfaces;
+                          show ALC1 atoms;
+                          color ALC1 byhetero;
+                          hide H;
+                          style ALC1 sphere;
+                          size atomradius 1.3;
+                          graphics silhouettes true">Display atomic model.</a>
+      </p>
+      <p>
+        Let's <a class="cxcmd" href="cxcmd:view mainALC1; view name
+        mainALC1view">zoom in on the peptide</a>. Let's also <a class="cxcmd"
+        href="cxcmd:crossfade 60; style ALC1 stick; size stickradius 0.3">change
+        its display style to sticks</a>, to better see the atoms.
+      </p>
+      <p>
+        Feel free to rotate the view to look at it from any side. If you get
+        lost, you can <a class="cxcmd" href="cxcmd:view mainALC1view">recenter
+        the view on the peptide</a>.
+      </p>
+      <p>
+        We can now <a class="cxcmd" href="cxcmd: crossfade 60; color #1
+        turquoise transparency 75; surface zone #1 nearatoms mainALC1 distance
+        1.6; show #1">show the density map around the peptide</a> to check that
+        the model is supported by the data. Again, here feel free to rotate the
+        view or zoom in or out. The reset link above will bring you back to the
+        view centered on the peptide, should you need it.
+      </p>
+      <p>
+        Finally, let's <a class="cxcmd"
+                          href="cxcmd:
+                                hide #1;
+                                hide surface;
+                                show histones cartoons;
+                                graphics silhouettes true;
+                                show interactions atoms;
+                                style interactions stick;
+                                size stickradius 0.3;
+                                color interactions byhetero;
+                                hide HC;
+                                hbond mainALC1 reveal true intermodel false;
+                                clip far 2">have a look at the hydrogen bond
+        network</a> between the peptide and the histones.
+      </p>
+
+      <h2>Comparison with the LANA peptide</h2>
+      <p>
+        At this point, we have interactively walked through Figures 2E and 2F of
+        the article. To visit Figure 2G, we need to <a class="cxcmd"
+        href="cxcmd: open 1zla">download PDB entry 1ZLA</a> which contains the
+        LANA peptide bound to the acidic patch. We also need to <a class="cxcmd"
+        href="cxcmd: mmaker #3/g to #2/g">align it to our nucleosome model</a>
+        and <a class="cxcmd" href="cxcmd:
+                                   hide histones atoms;
+                                   hide DNA atoms;
+                                   show histones cartoons;
+                                   show DNA cartoons;
+                                   color H3 blue;
+                                   color H4 green;
+                                   color H2A yellow;
+                                   color H2B red;
+                                   color DNA grey;
+                                   name LANA #3/k;
+                                   style LANA stick;
+                                   size stickradius 0.3;
+                                   color LANA cyan;
+                                   color LANA byhetero">adjust a few visual
+        parameters</a>. Finally, let's <a class="cxcmd" href="cxcmd: view LANA;
+        view name LANAview">zoom in on LANA</a>.
+      </p>
+      <p>
+        Again, feel free to look around. <a class="cxcmd" href="cxcmd: view
+        LANAview">Recenter on LANA</a> if you get lost.
+      </p>
+      <p>
+        Almost there! We can finally also <a class="cxcmd"
+                                             href="cxcmd:
+                                                   name LANAinteractions #3/g:1061,1064,1090,1092/h:1444,1510,1513;
+                                                   hbond LANA reveal true intermodel false;
+                                                   style LANAinteractions stick;
+                                                   size stickradius 0.3;
+                                                   color LANAinteractions byhetero;
+                                                   hide HC;
+                                                   clip far 2">display
+        the interactions</a> between LANA and the nucleosome, and you now have a
+        view similar to Figure 2G of the article.
+      </p>
+
+    </main>
+
+    <footer>
+      <hr>
+      <p>
+        Made by
+        <a href="https://www.gaullier.org/en/about">Guillaume Gaullier</a>,<br>
+        released under Creative Commons Attribution 4.0
+        International (<a href="https://creativecommons.org/licenses/by/4.0/">CC
+        BY 4.0</a>).
+      </p>
+    </footer>
+
+  </body>
+
+</html>

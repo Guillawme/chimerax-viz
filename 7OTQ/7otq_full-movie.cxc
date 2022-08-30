@@ -66,8 +66,11 @@ dssp protein
 
 # Adjust display of atomic model
 hide atoms
-hide cartoons
+show cartoons
 cartoon style protein modeHelix tube radius 2 sides 24
+show DNA atoms
+nucleotides stubs
+hide #!2 models
 
 # Global display options
 set bgColor white
@@ -79,25 +82,19 @@ graphics silhouettes true
 view disc
 view #1
 movie record
-wait 240
+wait 120
 # Smooth transition from grey map to colored map
-crossfade 120
+crossfade 60
 color zone #1 near #2 distance 10
-wait 240
+wait 120
+turn y 0.5 720; wait
+wait 120
 # Smooth transition from map to atomic model
-crossfade 120
-hide #1
-show cartoons
-wait 240
-turn y 0.25 1440; wait
+crossfade 60
+hide #!1 models
+show #!2 models
+wait 120
+turn y 0.5 720; wait
 movie stop
-surface zone #1 nearatoms H4tail distance 3
-color #1 green transparency 85
-movie record
-wait 240
-view H4tailInteraction 720; wait
-crossfade 120
-show #1
-wait 240
-movie stop
-movie encode framerate 60 output 7otq_movie.mp4
+
+movie encode framerate 60 output 7otq_movie_2.mp4

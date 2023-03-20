@@ -14,7 +14,7 @@ by the Nucleosome Acidic Patch. *Cell Reports* **33**
 Not counting the time it took to download the map and model, rendering this
 movie took about 20 minutes on a laptop (Intel Core i7 at 3.1 GHz, 16 GB of RAM,
 Intel Iris Graphics 6100 integrated graphics card) and about 10 minutes on a
-workstation (Intel Core at i7-6900K 3.2 GHz, 128 GB of RAM, nVidia GeForce GTX
+workstation (Intel Core i7-6900K at 3.2 GHz, 128 GB of RAM, nVidia GeForce GTX
 1070 Ti graphics card).
 
 The two scripts are almost identical: `6zhx_three-parts.cxc` generates separate

@@ -1,0 +1,216 @@
+# Load map and model
+open emd_15777_additional_1.map
+open 8b0a
+
+# Global UI and graphics settings
+set bgColor white
+lighting soft
+graphics silhouettes true
+
+# Name chains to make the rest easier to read
+name H3 /a/e
+name H4 /b/f
+name H2A /c/g
+name H2B /d/h
+name histones /a-h
+name DNA /i/j
+name ALC1 /k
+name NATPase /k:42-266
+name CATPase /k:267-500
+name ALC1Cter /k:500
+name H2BNter /d:28/h:28
+name widomStrong /i:-36--35,-26--25,-16--15,-6--5/j:5-6,15-16,25-26,35-36
+
+# Color-blindness compatible histone color code
+# I didn't try to find a color for ALC1 though...
+# See https://davidmathlogic.com/colorblind/#%23D0D0D0-%23009E73-%23F0E442-%230072B2-%23D55E00
+#color H3 #0072B2
+#color H4 #009E73
+#color H2A #F0E442
+#color H2B #D55E00
+#color DNA #D0D0D0
+
+# Apply color code
+color H3 blue
+color H4 green
+color H2A yellow
+color H2B red
+color DNA silver
+color ALC1 deeppink
+color NATPase salmon
+color widomStrong black
+
+# Find correct protein secondary structure assignments in atomic model
+dssp protein
+
+# Adjust display of atomic model
+hide #2 atoms
+show #2 cartoons
+cartoon style protein modeHelix tube radius 2 sides 24
+show DNA atoms
+style DNA stick
+nucleotides DNA fill
+
+# Orient in disc view
+turn y 180
+turn x 30
+turn z -60
+turn y 10
+turn x 5
+view #1
+zoom 1.5
+view name disc
+
+# Orient in dyad view
+turn x 90
+turn z -10
+view name dyad
+
+# Orient in gyres view
+view disc
+turn x -95
+turn z 10
+view name gyres
+
+# Figure: map overview with color code
+hide #!2 models
+volume #1 level 0.05
+surface dust #1 size 10
+color zone #1 near #2 distance 10
+view disc
+save map-disc-view.png supersample 3 transparentbackground true
+view dyad
+save map-dyad-view.png supersample 3 transparentbackground true
+view gyres
+save map-gyres-view.png supersample 3 transparentbackground true
+
+# Figure: model overview with color code
+hide #!1 models
+show #!2 models
+view disc
+save model-disc-view.png supersample 3 transparentbackground true
+view dyad
+save model-dyad-view.png supersample 3 transparentbackground true
+view gyres
+save model-gyres-view.png supersample 3 transparentbackground true
+
+# Figure: model in gyres view with ALC1-Cter and H2B-Nter indicated
+show ALC1Cter atoms
+style ALC1Cter sphere
+size ALC1Cter atomradius +1.0
+color ALC1Cter mediumvioletred
+show H2BNter atoms
+style H2BNter sphere
+size H2BNter atomradius +1.0
+color H2BNter crimson
+save model-gyres-view-termini.png supersample 3 transparentbackground true
+sel ALC1Cter | H2BNter
+save model-gyres-view-termini-highlighted.png supersample 3 transparentbackground true
+sel clear
+
+# Figure: model in gyres view with ALC1-Cter and H2B-Nter indicated, distal dimer darker colored
+name distalDimer /c/d
+name proximalDimer /g/h
+color /c orange
+color /d firebrick
+save model-gyres-view-termini-distal-proximal-dimers.png supersample 3 transparentbackground true
+sel distalDimer
+save model-gyres-view-distal-dimer-highlighted.png supersample 3 transparentbackground true
+sel proximalDimer
+save model-gyres-view-proximal-dimer-highlighted.png supersample 3 transparentbackground true
+sel clear
+
+# Figure: model in gyres view with ALC1-Cter and H2B-Nter indicated, irrelevant histones faded, proximal and distal dimers in very different colors
+name irrelevantHistones /a/e/b/f/c/g
+color irrelevantHistones white
+#transparency irrelevantHistones 75 cartoons
+name proximalH2B /h
+name distalH2B /d
+color distalH2B dodgerblue
+color proximalH2B orange
+save model-gyres-view-proximal-distal-H2Bs-colored.png supersample 3 transparentbackground true
+view dyad
+save model-dyad-view-proximal-distal-H2Bs-colored.png supersample 3 transparentbackground true
+view disc
+save model-disc-view-proximal-distal-H2Bs-colored.png supersample 3 transparentbackground true
+
+# Same as above, but with ribbons only for DNA and only TA-steps shown as atoms
+hide DNA atoms
+show widomStrong atoms
+color DNA darkgrey
+color widomStrong black
+view gyres
+save model-gyres-view-proximal-distal-H2Bs-colored-TA-steps.png supersample 3 transparentbackground true
+view dyad
+save model-dyad-view-proximal-distal-H2Bs-colored-TA-steps.png supersample 3 transparentbackground true
+view disc
+save model-disc-view-proximal-distal-H2Bs-colored-TA-steps.png supersample 3 transparentbackground true
+color DNA silver
+color widomStrong black
+
+# Figure: DNA only, model-to-map fit
+view disc
+hide #2 atoms
+hide #2 cartoons
+show DNA atoms
+nucleotides atoms
+name strongHalf /i:-72-0/j:0-72
+name weakHalf /i:0-76/j:-76-0
+show #!1 models
+color #1 lightgrey
+volume #1 level 0.4
+lighting flat
+
+## Strong half
+hide weakHalf atoms
+surface zone #1 nearAtoms strongHalf distance 3
+color zone #1 near strongHalf distance 10
+transparency #1 75
+color DNA byhetero
+save DNA-strong-half-map-model.png supersample 3 transparentbackground true
+
+## Zoom in on TA step 1
+#name TA1a /i:-6/j:6
+#name TA1b /i:-5/j:5
+#name TA2a /i:-16/j:16
+#name TA2b /i:-15/j:15
+#name TA3a /i:-26/j:26
+#name TA3b /i:-25/j:25
+#name TA4a /i:-36/j:36
+#name TA4b /i:-35/j:35
+#turn x -60
+
+## Weak half
+hide strongHalf
+show weakHalf
+surface zone #1 nearAtoms weakHalf distance 3
+color #1 lightgrey
+transparency #1 75
+save DNA-weak-half-map-model.png supersample 3 transparentbackground true
+
+# Close everything and open NU-refinement map to color by local resolution
+# This map is the one deposited in EMDB as main map
+# But I forgot to deposit the locres map, so this one needs to be recalculated
+# from the two half-maps deposited in EMDB. Leaving this section all commented
+# out because it won't run without the locres map.
+
+#close #1,2
+#lighting soft
+#open emdb:15777
+#open cryosparc_P1_J44/cryosparc_P1_J44_map_locres.mrc
+#hide #!2 models
+#volume #1 level 0.1
+#color sample #1 map #2 palette bluered
+
+# Resulting resolution values by color:
+# blue:		minimum 1.916
+# white:	mean 2.777
+# red:		maximum 4.981
+
+#view disc
+#save map-local-resolution_disc-view.png supersample 3 transparentbackground true
+#view dyad
+#save map-local-resolution_dyad-view.png supersample 3 transparentbackground true
+#view gyres
+#save map-local-resolution_gyres-view.png supersample 3 transparentbackground true
+

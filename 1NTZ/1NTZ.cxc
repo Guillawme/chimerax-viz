@@ -1,0 +1,43 @@
+# Fetch atomic model from the PDB
+open 1ntz
+
+# Generate biological assembly by applying symmetry
+sym #1 assembly 1
+
+# Initial model no longer necessary, close it
+close #1
+
+# Orient for the figure and adjust zoom to fit
+turn x 90
+view
+
+# Overall look
+set bgcolor white
+lighting soft
+graphics silhouettes true
+
+# Overview of the protein
+# Protein in cartoons/ribbons style
+# Cofactors in balls-and-sticks style
+# and colored by heteroatom (O red, N blue, etc.)
+# Hide water molecules
+# Save a picture
+hide protein atoms
+show protein cartoons
+show ~protein atoms
+style ~protein sphere
+color ~protein byhetero
+hide :hoh atoms
+save protein-overview.png supersample 3 transparentbackground true
+
+# Emphasis on the cofactors
+# Protein in spheres style, a single light color and transparent
+# Cofactors in spheres style
+# Save another picture
+hide protein cartoons
+show protein atoms
+style protein sphere
+color protein lightblue
+transparency protein 80 target a
+style ~protein sphere
+save cofactors-highlighted.png supersample 3 transparentbackground true
